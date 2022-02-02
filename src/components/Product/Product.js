@@ -9,7 +9,7 @@ import {
 	Paper,
 	Typography,
 } from "@mui/material";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import data from "../../data/productDetails.json";
 import "./product.css";
 
@@ -101,9 +101,14 @@ const Products = () => {
 											{item.numberOfCOAlarm}
 										</p>
 										<div style={{marginTop: "10px", paddingTop: "4px"}}>
-											<Button sx={{padding: "30"}} variant="contained">
-												Purchase property
-											</Button>
+											<Link
+												to="/purchase-property"
+												style={{textDecoration: "none"}}
+											>
+												<Button sx={{padding: "30"}} variant="contained">
+													Contact Seller
+												</Button>
+											</Link>
 										</div>
 									</div>
 								</Paper>

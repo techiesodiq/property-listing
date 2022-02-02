@@ -12,14 +12,15 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import {Link} from "react-router-dom"
+import React, {useState} from "react"
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = () => {
-	const [anchorElNav, setAnchorElNav] = React.useState(null);
-	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const [anchorElNav, setAnchorElNav] = useState(null);
+	const [anchorElUser, setAnchorElUser] = useState(null);
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
@@ -40,6 +41,7 @@ const Navbar = () => {
 		<AppBar position="static" sx={{backgroundColor: "white"}}>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
+				<Link to="/" style={{textDecoration:"none"}}>
 					<Typography
 						variant="h6"
 						noWrap
@@ -48,6 +50,7 @@ const Navbar = () => {
 					>
 						LOGO
 					</Typography>
+					</Link>
 
 					<Box sx={{flexGrow: 1, display: {xs: "flex", md: "none"}}}>
 						<IconButton
