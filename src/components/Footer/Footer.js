@@ -1,48 +1,16 @@
-/** @format */
-
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import * as React from "react";
+import React from 'react';
+import { Link, Typography } from '@mui/material';
 
 const Footer = () => {
-	return (
-		<Box sx={{width: "100%", backgroundColor: "#000", color: "#fff"}}>
-			<Grid container rowSpacing={1} columnSpacing={{xs: 1, sm: 2, md: 3}}>
-				<Grid item xs={6} md={3}>
-					<ul>
-						<li>About</li>
-						<li>Contact</li>
-						<li>Product</li>
-						<li>Products</li>
-					</ul>
-				</Grid>
-				<Grid item xs={6} md={3}>
-					<ul>
-						<li>About</li>
-						<li>Contact</li>
-						<li>Product</li>
-						<li>Products</li>
-					</ul>
-				</Grid>
-				<Grid item xs={6} md={3}>
-					<ul>
-						<li>About</li>
-						<li>Contact</li>
-						<li>Product</li>
-						<li>Products</li>
-					</ul>
-				</Grid>
-				<Grid item xs={6} md={3}>
-					<ul>
-						<li>About</li>
-						<li>Contact</li>
-						<li>Product</li>
-						<li>Products</li>
-					</ul>
-				</Grid>
-			</Grid>
-		</Box>
-	);
-};
+  return (
+    <Typography variant="body2" color="#607d8b" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://www.linkedin.com/in/sodiq-akanmu-13641987/">
+        Sodiq Akanmu
+      </Link>
+      {new Date().getFullYear()}
+    </Typography>
+  );
+}
 
 export default Footer;

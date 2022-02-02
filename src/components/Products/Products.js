@@ -38,7 +38,7 @@ const Products = () => {
 								</Link>
 
 								<CardContent>
-									<Link to={"product/" + item.productLink}>
+									<Link to={"product/" + item.productLink} style={{textDecoration:"none"}}>
 										<Typography variant="h6" component="h5">
 											{item.price}
 										</Typography>
