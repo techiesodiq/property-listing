@@ -55,7 +55,7 @@ const DesktopScreenModal = () => {
 						textAlign: "center",
 						fontWeight: "bold",
 						fontSize: "26px",
-						margin: 0,
+						marginTop: "20px",
 					}}
 				>
 					Login
@@ -65,7 +65,7 @@ const DesktopScreenModal = () => {
 						margin: 0,
 						padding: 0,
 						height: "40vh",
-						width: "45vw", //adjust the height (maybe 100vh)
+						width: "35vw",
 						position: "relative",
 						overflowX: "hidden",
 					}}
@@ -217,7 +217,7 @@ const OtherScreensModal = () => {
 						textAlign: "center",
 						fontWeight: "bold",
 						fontSize: "26px",
-						margin: 0,
+						marginTop: "20px",
 					}}
 				>
 					Login
@@ -226,8 +226,8 @@ const OtherScreensModal = () => {
 					style={{
 						margin: 0,
 						padding: 0,
-						height: "60vh",
-						width: "60vw", //adjust the height (maybe 100vh)
+						height: "50vh",
+						width: "80vw",
 						position: "relative",
 						overflowX: "hidden",
 					}}

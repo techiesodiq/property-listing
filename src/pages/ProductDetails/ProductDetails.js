@@ -1,10 +1,16 @@
-import React from 'react';
+/** @format */
+
+import React from "react";
+import GoogleMap from "../../components/GoogleMap";
 import Product from "../../components/Product";
 
 const ProductDetails = () => {
-  return <div>
-  <Product/>
-  </div>;
+	return (
+		<div>
+			<Product />
+			<GoogleMap />
+		</div>
+	);
 };
 
 export default ProductDetails;
