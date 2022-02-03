@@ -5,11 +5,11 @@ import React from "react";
 
 const AnyReactComponent = ({text}) => <div>{text}</div>;
 
-const GoogleMap = () => {
+const GoogleMap = ({data}) => {
 	const defaultProps = {
 		center: {
-			lat: 8.1458,
-			lng: 4.701,
+			lat: parseFloat(data.lat),
+			lng: parseFloat(data.lng),
 		},
 		zoom: 11,
 	};
@@ -21,7 +21,11 @@ const GoogleMap = () => {
 				defaultCenter={defaultProps.center}
 				defaultZoom={defaultProps.zoom}
 			>
-				<AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
+				<AnyReactComponent
+					lat={parseFloat(data.lat)}
+					lng={parseFloat(data.lng)}
+					text="My Marker"
+				/>
 			</GoogleMapReact>
 		</div>
 	);

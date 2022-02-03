@@ -16,10 +16,7 @@ const Navbar = () => {
 						component="div"
 						sx={{flexGrow: 1, fontWeight: "bold"}}
 					>
-						<Link
-							style={{textDecoration: "none", color: "white"}}
-							to="/dashboard"
-						>
+						<Link style={{textDecoration: "none", color: "white"}} to="/">
 							LOGO
 						</Link>
 					</Typography>
