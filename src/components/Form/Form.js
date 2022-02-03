@@ -15,10 +15,7 @@ import * as Yup from "yup";
 
 const Form = () => {
 	const theme = useTheme();
-	const isMatchMobile = useMediaQuery(theme.breakpoints.down("699px"));
-	const isMatchMedium = useMediaQuery(
-		theme.breakpoints.between("700px", "899px")
-	);
+	const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
 	const [loading, setLoading] = useState(false);
 
 	const formikInitialValues = {
@@ -48,14 +45,17 @@ const Form = () => {
 		address2: Yup.string(),
 		city: Yup.string().required("Required"),
 		state: Yup.string().required("Required"),
-		message: Yup.string().max(500, "Must be 500 characters or less").required,
+		message: Yup.string()
+			.max(500, "Must be 500 characters or less")
+			.required("Required"),
 	});
 
 	const formikHandleSubmit = async (values, {resetForm}) => {
+		console.log(values);
 		setLoading(true);
 		if (values) {
 			console.log(values);
-			window.location.href = "/";
+			window.location.href = "/checkout-success";
 		}
 		resetForm({values: ""});
 	};
@@ -64,7 +64,7 @@ const Form = () => {
 		<div
 			style={{
 				height: "87vh",
-				width: "70vw", //adjust the height (maybe 100vh)
+				width: "73vw", //adjust the height (maybe 100vh)
 				position: "relative",
 			}}
 		>
@@ -72,6 +72,7 @@ const Form = () => {
 				elevation={3}
 				style={{
 					margin: 0,
+					paddingBottom: "10px",
 					position: "absolute",
 					top: "50%",
 					left: "50%",
@@ -94,50 +95,36 @@ const Form = () => {
 						onSubmit={formikHandleSubmit}
 					>
 						{(props) => {
+							console.log(props.errors);
 							return (
-								<form onSubmit={props.handleSubmit} style={{marginTop: "40px"}}>
+								<form onSubmit={props.handleSubmit} style={{marginTop: "50px"}}>
 									<Grid
 										container
 										rowSpacing={3}
 										columnSpacing={{xs: 1, sm: 2, md: 3}}
 									>
-										<Grid
-											item
-											xs={6}
-											style={{
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-											}}
-										>
+										<Grid item xs={6}>
 											<TextField
 												id="outlined-basic"
-												label="First Name"
+												label="First Name*"
 												variant="outlined"
 												name="firstName"
 												onBlur={props.handleBlur}
 												onChange={props.handleChange}
 												value={props.values.firstName}
 											/>
-											<br />
 											{props.touched.firstName && props.errors.firstName ? (
-												<p style={{color: "red", fontSize: "11px"}}>
+												<p
+													style={{color: "red", fontSize: "11px", marginTop: 0}}
+												>
 													{props.errors.firstName}
 												</p>
 											) : null}
 										</Grid>
-										<Grid
-											item
-											xs={6}
-											style={{
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-											}}
-										>
+										<Grid item xs={6}>
 											<TextField
 												id="outlined-basic"
-												label="Last Name"
+												label="Last Name*"
 												variant="outlined"
 												name="lastName"
 												onBlur={props.handleBlur}
@@ -145,23 +132,17 @@ const Form = () => {
 												value={props.values.lastName}
 											/>
 											{props.touched.lastName && props.errors.lastName ? (
-												<p style={{color: "red", fontSize: "11px"}}>
+												<p
+													style={{color: "red", fontSize: "11px", marginTop: 0}}
+												>
 													{props.errors.lastName}
 												</p>
 											) : null}
 										</Grid>
-										<Grid
-											item
-											xs={6}
-											style={{
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-											}}
-										>
+										<Grid item xs={6}>
 											<TextField
 												id="outlined-basic"
-												label="Email"
+												label="Email*"
 												variant="outlined"
 												name="email"
 												onBlur={props.handleBlur}
@@ -169,23 +150,17 @@ const Form = () => {
 												value={props.values.email}
 											/>
 											{props.touched.email && props.errors.email ? (
-												<p style={{color: "red", fontSize: "11px"}}>
+												<p
+													style={{color: "red", fontSize: "11px", marginTop: 0}}
+												>
 													{props.errors.email}
 												</p>
 											) : null}
 										</Grid>
-										<Grid
-											item
-											xs={6}
-											style={{
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-											}}
-										>
+										<Grid item xs={6}>
 											<TextField
 												id="outlined-basic"
-												label="Number"
+												label="Number*"
 												variant="outlined"
 												name="number"
 												onBlur={props.handleBlur}
@@ -193,23 +168,17 @@ const Form = () => {
 												value={props.values.number}
 											/>
 											{props.touched.number && props.errors.number ? (
-												<p style={{color: "red", fontSize: "11px"}}>
+												<p
+													style={{color: "red", fontSize: "11px", marginTop: 0}}
+												>
 													{props.errors.number}
 												</p>
 											) : null}
 										</Grid>
-										<Grid
-											item
-											xs={6}
-											style={{
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-											}}
-										>
+										<Grid item xs={6}>
 											<TextField
 												id="outlined-basic"
-												label="Address Line 1"
+												label="Address Line 1*"
 												variant="outlined"
 												name="address1"
 												onBlur={props.handleBlur}
@@ -217,20 +186,14 @@ const Form = () => {
 												value={props.values.address1}
 											/>
 											{props.touched.address1 && props.errors.address1 ? (
-												<p style={{color: "red", fontSize: "11px"}}>
+												<p
+													style={{color: "red", fontSize: "11px", marginTop: 0}}
+												>
 													{props.errors.address1}
 												</p>
 											) : null}
 										</Grid>
-										<Grid
-											item
-											xs={6}
-											style={{
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-											}}
-										>
+										<Grid item xs={6}>
 											<TextField
 												id="outlined-basic"
 												label="Address Line 2"
@@ -241,24 +204,18 @@ const Form = () => {
 												value={props.values.address2}
 											/>
 											{props.touched.address2 && props.errors.address2 ? (
-												<p style={{color: "red", fontSize: "11px"}}>
+												<p
+													style={{color: "red", fontSize: "11px", marginTop: 0}}
+												>
 													{props.errors.address2}
 												</p>
 											) : null}
 										</Grid>
 
-										<Grid
-											item
-											xs={6}
-											style={{
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-											}}
-										>
+										<Grid item xs={6}>
 											<TextField
 												id="outlined-basic"
-												label="City"
+												label="City*"
 												variant="outlined"
 												name="city"
 												onBlur={props.handleBlur}
@@ -266,23 +223,17 @@ const Form = () => {
 												value={props.values.city}
 											/>
 											{props.touched.city && props.errors.city ? (
-												<p style={{color: "red", fontSize: "11px"}}>
+												<p
+													style={{color: "red", fontSize: "11px", marginTop: 0}}
+												>
 													{props.errors.city}
 												</p>
 											) : null}
 										</Grid>
-										<Grid
-											item
-											xs={6}
-											style={{
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-											}}
-										>
+										<Grid item xs={6}>
 											<TextField
 												id="outlined-basic"
-												label="State"
+												label="State*"
 												variant="outlined"
 												name="state"
 												onBlur={props.handleBlur}
@@ -290,34 +241,30 @@ const Form = () => {
 												value={props.values.state}
 											/>
 											{props.touched.state && props.errors.state ? (
-												<p style={{color: "red", fontSize: "11px"}}>
+												<p
+													style={{color: "red", fontSize: "11px", marginTop: 0}}
+												>
 													{props.errors.state}
 												</p>
 											) : null}
 										</Grid>
-										<Grid
-											item
-											xs={12}
-											style={{
-												display: "flex",
-												justifyContent: "center",
-												alignItems: "center",
-											}}
-										>
+										<Grid item xs={12}>
 											<TextField
 												id="outlined-basic"
-												label="Message"
+												label="Message*"
 												variant="outlined"
 												multiline
 												rows={3}
-												fullWidth
+												style={{width: "95%"}}
 												name="message"
 												onBlur={props.handleBlur}
 												onChange={props.handleChange}
 												value={props.values.message}
 											/>
 											{props.touched.message && props.errors.message ? (
-												<p style={{color: "red", fontSize: "11px"}}>
+												<p
+													style={{color: "red", fontSize: "11px", marginTop: 0}}
+												>
 													{props.errors.message}
 												</p>
 											) : null}
@@ -347,280 +294,6 @@ const Form = () => {
 		</div>
 	);
 
-	const mediumScreenForm = (
-		<Paper
-			elevation={3}
-			style={{
-				margin: "5px",
-				padding: "5px",
-			}}
-		>
-			<div
-				style={{
-					margin: "10px",
-					padding: "10px",
-				}}
-			>
-				<h3 style={{lineHeight: "0"}}>Checkout Form</h3>
-				<p style={{fontSize: "11px", lineHeight: "0"}}>
-					<i>Kindly fill the form below to complete your transaction</i>
-				</p>
-				<Formik
-					initialValues={formikInitialValues}
-					validationSchema={formikValidationSchema}
-					onSubmit={formikHandleSubmit}
-				>
-					{(props) => {
-						return (
-							<form onSubmit={props.handleSubmit} style={{marginTop: "30px"}}>
-								<Grid
-									container
-									rowSpacing={2}
-									columnSpacing={{xs: 1, sm: 2, md: 3}}
-								>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										<TextField
-											id="outlined-basic"
-											label="First Name"
-											variant="outlined"
-											name="firstName"
-											onBlur={props.handleBlur}
-											onChange={props.handleChange}
-											value={props.values.firstName}
-										/>
-										{props.touched.firstName && props.errors.firstName ? (
-											<p style={{color: "red", fontSize: "11px"}}>
-												{props.errors.firstName}
-											</p>
-										) : null}
-									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										<TextField
-											id="outlined-basic"
-											label="Last Name"
-											variant="outlined"
-											name="lastName"
-											onBlur={props.handleBlur}
-											onChange={props.handleChange}
-											value={props.values.lastName}
-										/>
-										{props.touched.lastName && props.errors.lastName ? (
-											<p style={{color: "red", fontSize: "11px"}}>
-												{props.errors.lastName}
-											</p>
-										) : null}
-									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										<TextField
-											id="outlined-basic"
-											label="Email"
-											variant="outlined"
-											name="email"
-											onBlur={props.handleBlur}
-											onChange={props.handleChange}
-											value={props.values.email}
-										/>
-										{props.touched.email && props.errors.email ? (
-											<p style={{color: "red", fontSize: "11px"}}>
-												{props.errors.email}
-											</p>
-										) : null}
-									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										<TextField
-											id="outlined-basic"
-											label="Number"
-											variant="outlined"
-											name="number"
-											onBlur={props.handleBlur}
-											onChange={props.handleChange}
-											value={props.values.number}
-										/>
-										{props.touched.number && props.errors.number ? (
-											<p style={{color: "red", fontSize: "11px"}}>
-												{props.errors.number}
-											</p>
-										) : null}
-									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										<TextField
-											id="outlined-basic"
-											label="Address Line 1"
-											variant="outlined"
-											name="address1"
-											onBlur={props.handleBlur}
-											onChange={props.handleChange}
-											value={props.values.address1}
-										/>
-										{props.touched.address1 && props.errors.address1 ? (
-											<p style={{color: "red", fontSize: "11px"}}>
-												{props.errors.address1}
-											</p>
-										) : null}
-									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										<TextField
-											id="outlined-basic"
-											label="Address Line 2"
-											variant="outlined"
-											name="address2"
-											onBlur={props.handleBlur}
-											onChange={props.handleChange}
-											value={props.values.address2}
-										/>
-										{props.touched.address2 && props.errors.address2 ? (
-											<p style={{color: "red", fontSize: "11px"}}>
-												{props.errors.address2}
-											</p>
-										) : null}
-									</Grid>
-
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										<TextField
-											id="outlined-basic"
-											label="City"
-											variant="outlined"
-											name="city"
-											onBlur={props.handleBlur}
-											onChange={props.handleChange}
-											value={props.values.city}
-										/>
-										{props.touched.city && props.errors.city ? (
-											<p style={{color: "red", fontSize: "11px"}}>
-												{props.errors.city}
-											</p>
-										) : null}
-									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										<TextField
-											id="outlined-basic"
-											label="State"
-											variant="outlined"
-											name="state"
-											onBlur={props.handleBlur}
-											onChange={props.handleChange}
-											value={props.values.state}
-										/>
-										{props.touched.state && props.errors.state ? (
-											<p style={{color: "red", fontSize: "11px"}}>
-												{props.errors.state}
-											</p>
-										) : null}
-									</Grid>
-									<Grid
-										item
-										xs={12}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
-										<TextField
-											id="outlined-basic"
-											label="Message"
-											variant="outlined"
-											multiline
-											rows={3}
-											style={{width: "82%"}}
-											name="message"
-											onBlur={props.handleBlur}
-											onChange={props.handleChange}
-											value={props.values.message}
-										/>
-										{props.touched.message && props.errors.message ? (
-											<p style={{color: "red", fontSize: "11px"}}>
-												{props.errors.message}
-											</p>
-										) : null}
-									</Grid>
-
-									<Grid
-										item
-										xs={12}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-											marginTop: "20px",
-										}}
-									>
-										<Button type="submit" variant="contained">
-											{loading ? "Placing Order" : "Place Order"}
-										</Button>
-									</Grid>
-								</Grid>
-							</form>
-						);
-					}}
-				</Formik>
-			</div>
-		</Paper>
-	);
 	const otherScreensForm = (
 		<Paper
 			elevation={3}
@@ -652,18 +325,10 @@ const Form = () => {
 									rowSpacing={2}
 									columnSpacing={{xs: 1, sm: 2, md: 3}}
 								>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
+									<Grid item xs={6}>
 										<TextField
 											id="outlined-basic"
-											label="First Name"
+											label="First Name*"
 											variant="outlined"
 											name="firstName"
 											onBlur={props.handleBlur}
@@ -671,23 +336,15 @@ const Form = () => {
 											value={props.values.firstName}
 										/>
 										{props.touched.firstName && props.errors.firstName ? (
-											<p style={{color: "red", fontSize: "11px"}}>
+											<p style={{color: "red", fontSize: "11px", marginTop: 0}}>
 												{props.errors.firstName}
 											</p>
 										) : null}
 									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
+									<Grid item xs={6}>
 										<TextField
 											id="outlined-basic"
-											label="Last Name"
+											label="Last Name*"
 											variant="outlined"
 											name="lastName"
 											onBlur={props.handleBlur}
@@ -695,23 +352,15 @@ const Form = () => {
 											value={props.values.lastName}
 										/>
 										{props.touched.lastName && props.errors.lastName ? (
-											<p style={{color: "red", fontSize: "11px"}}>
+											<p style={{color: "red", fontSize: "11px", marginTop: 0}}>
 												{props.errors.lastName}
 											</p>
 										) : null}
 									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
+									<Grid item xs={6}>
 										<TextField
 											id="outlined-basic"
-											label="Email"
+											label="Email*"
 											variant="outlined"
 											name="email"
 											onBlur={props.handleBlur}
@@ -719,23 +368,15 @@ const Form = () => {
 											value={props.values.email}
 										/>
 										{props.touched.email && props.errors.email ? (
-											<p style={{color: "red", fontSize: "11px"}}>
+											<p style={{color: "red", fontSize: "11px", marginTop: 0}}>
 												{props.errors.email}
 											</p>
 										) : null}
 									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
+									<Grid item xs={6}>
 										<TextField
 											id="outlined-basic"
-											label="Number"
+											label="Number*"
 											variant="outlined"
 											name="number"
 											onBlur={props.handleBlur}
@@ -743,23 +384,15 @@ const Form = () => {
 											value={props.values.number}
 										/>
 										{props.touched.number && props.errors.number ? (
-											<p style={{color: "red", fontSize: "11px"}}>
+											<p style={{color: "red", fontSize: "11px", marginTop: 0}}>
 												{props.errors.number}
 											</p>
 										) : null}
 									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
+									<Grid item xs={6}>
 										<TextField
 											id="outlined-basic"
-											label="Address Line 1"
+											label="Address Line 1*"
 											variant="outlined"
 											name="address1"
 											onBlur={props.handleBlur}
@@ -767,20 +400,12 @@ const Form = () => {
 											value={props.values.address1}
 										/>
 										{props.touched.address1 && props.errors.address1 ? (
-											<p style={{color: "red", fontSize: "11px"}}>
+											<p style={{color: "red", fontSize: "11px", marginTop: 0}}>
 												{props.errors.address1}
 											</p>
 										) : null}
 									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
+									<Grid item xs={6}>
 										<TextField
 											id="outlined-basic"
 											label="Address Line 2"
@@ -791,24 +416,16 @@ const Form = () => {
 											value={props.values.address2}
 										/>
 										{props.touched.address2 && props.errors.address2 ? (
-											<p style={{color: "red", fontSize: "11px"}}>
+											<p style={{color: "red", fontSize: "11px", marginTop: 0}}>
 												{props.errors.address2}
 											</p>
 										) : null}
 									</Grid>
 
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
+									<Grid item xs={6}>
 										<TextField
 											id="outlined-basic"
-											label="City"
+											label="City*"
 											variant="outlined"
 											name="city"
 											onBlur={props.handleBlur}
@@ -816,23 +433,15 @@ const Form = () => {
 											value={props.values.city}
 										/>
 										{props.touched.city && props.errors.city ? (
-											<p style={{color: "red", fontSize: "11px"}}>
+											<p style={{color: "red", fontSize: "11px", marginTop: 0}}>
 												{props.errors.city}
 											</p>
 										) : null}
 									</Grid>
-									<Grid
-										item
-										xs={6}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
+									<Grid item xs={6}>
 										<TextField
 											id="outlined-basic"
-											label="State"
+											label="State*"
 											variant="outlined"
 											name="state"
 											onBlur={props.handleBlur}
@@ -840,34 +449,26 @@ const Form = () => {
 											value={props.values.state}
 										/>
 										{props.touched.state && props.errors.state ? (
-											<p style={{color: "red", fontSize: "11px"}}>
+											<p style={{color: "red", fontSize: "11px", marginTop: 0}}>
 												{props.errors.state}
 											</p>
 										) : null}
 									</Grid>
-									<Grid
-										item
-										xs={12}
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
-									>
+									<Grid item xs={12}>
 										<TextField
 											id="outlined-basic"
-											label="Message"
+											label="Message*"
 											variant="outlined"
 											multiline
 											rows={3}
-											style={{width: "82%"}}
+											fullWidth
 											name="message"
 											onBlur={props.handleBlur}
 											onChange={props.handleChange}
 											value={props.values.message}
 										/>
 										{props.touched.message && props.errors.message ? (
-											<p style={{color: "red", fontSize: "11px"}}>
+											<p style={{color: "red", fontSize: "11px", marginTop: 0}}>
 												{props.errors.message}
 											</p>
 										) : null}
@@ -904,11 +505,7 @@ const Form = () => {
 					placeItems: "center",
 				}}
 			>
-				{isMatchMobile
-					? otherScreensForm
-					: isMatchMedium
-					? mediumScreenForm
-					: desktopScreenForm}
+				{isMatch ? otherScreensForm : desktopScreenForm}
 			</Box>
 		</>
 	);

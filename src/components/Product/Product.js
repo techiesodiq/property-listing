@@ -25,6 +25,7 @@ const Products = () => {
 							container
 							rowSpacing={3}
 							columnSpacing={{xs: 1, sm: 2, md: 5}}
+							key={index}
 						>
 							<Grid item md={2}></Grid>
 							<Grid item xs={12} md={6}>
@@ -102,7 +103,7 @@ const Products = () => {
 										</p>
 										<div style={{marginTop: "10px", paddingTop: "4px"}}>
 											<Link
-												to="/purchase-property"
+												to="/contact-seller"
 												style={{textDecoration: "none"}}
 											>
 												<Button sx={{padding: "30"}} variant="contained">
