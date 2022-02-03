@@ -6,7 +6,6 @@ import Navbar from "./components/Navbar";
 import CheckoutSuccess from "./pages/Checkout";
 import ContactSeller from "./pages/ContactSeller";
 import Home from "./pages/HomeDashboard";
-import LoginDashboard from "./pages/LoginDashboard";
 import ProductDetails from "./pages/ProductDetails";
 
 function App() {
@@ -16,7 +15,6 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/dashboard" element={<LoginDashboard />} />
 					<Route path="/product/:productLink" element={<ProductDetails />} />
 					<Route path="/contact-seller" element={<ContactSeller />} />
 					<Route path="/checkout-success" element={<CheckoutSuccess />} />
