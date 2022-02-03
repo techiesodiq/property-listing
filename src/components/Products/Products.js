@@ -25,8 +25,8 @@ const Products = () => {
 					columns={{xs: 4, sm: 8, md: 12}}
 				>
 					{data.map((item, index) => (
-						<Grid item xs={12} sm={12} md={4}>
-							<Card sx={{maxWidth: 420, borderRadius: 4}} key={index}>
+						<Grid item xs={12} sm={12} md={4} key={index}>
+							<Card sx={{maxWidth: 420, borderRadius: 4}}>
 								<Link to={"product/" + item.productLink}>
 									<CardMedia
 										sx={{borderRadius: 4}}
@@ -38,7 +38,10 @@ const Products = () => {
 								</Link>
 
 								<CardContent>
-									<Link to={"product/" + item.productLink} style={{textDecoration:"none"}}>
+									<Link
+										to={"product/" + item.productLink}
+										style={{textDecoration: "none"}}
+									>
 										<Typography variant="h6" component="h5">
 											{item.price}
 										</Typography>
